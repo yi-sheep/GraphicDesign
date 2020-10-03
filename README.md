@@ -2,6 +2,8 @@
 
 
 ## 数据分析
+### 推图请求
+path:/images
 ```
 {
     "result": true,
