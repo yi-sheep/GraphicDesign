@@ -2,7 +2,7 @@
 
 
 ## 数据分析
-```json
+```
 {
     "result": true,
     "number": 9,
