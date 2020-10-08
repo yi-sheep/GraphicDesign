@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black">
+
+    <uk.co.senab.photoview.PhotoView
+        android:id="@+id/view_img"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/viewImage_back"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_return_white" />
+
+        <ImageView
+            android:id="@+id/viewImage_more"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_more_options_white" />
+
+        <ImageView
+            android:id="@+id/viewImage_good_img"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="4dp"
+            android:contentDescription="TODO"
+            app:layout_constraintBottom_toTopOf="@+id/viewImage_good_number"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/ic_good_white" />
+
+        <TextView
+            android:id="@+id/viewImage_good_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/viewImage_good_img"
+            app:layout_constraintStart_toStartOf="@+id/viewImage_good_img"
+            tools:text="101" />
+
+        <ImageView
+            android:id="@+id/viewImage_download_img"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="4dp"
+            app:layout_constraintBottom_toTopOf="@+id/viewImage_download"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/ic_download_white" />
+
+        <TextView
+            android:id="@+id/viewImage_download"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="@string/download"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/viewImage_download_img"
+            app:layout_constraintStart_toStartOf="@+id/viewImage_download_img" />
+
+        <ImageView
+            android:id="@+id/viewImage_share_img"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="4dp"
+            app:layout_constraintBottom_toTopOf="@+id/viewImage_share"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/ic_share_white" />
+
+        <TextView
+            android:id="@+id/viewImage_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="@string/share"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/viewImage_share_img"
+            app:layout_constraintStart_toStartOf="@+id/viewImage_share_img" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

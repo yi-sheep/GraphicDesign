@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/pushGraphFragment">
+
+    <fragment
+        android:id="@+id/pushGraphFragment"
+        android:name="com.example.graphicdesign.ui.pushGraph.PushGraphFragment"
+        android:label="@string/push_graph"
+        tools:layout="@layout/push_graph_fragment" />
+    <fragment
+        android:id="@+id/communityFragment"
+        android:name="com.example.graphicdesign.ui.pushGraph.CommunityFragment"
+        android:label="@string/community"
+        tools:layout="@layout/community_fragment" />
+    <fragment
+        android:id="@+id/myFragment"
+        android:name="com.example.graphicdesign.ui.pushGraph.MyFragment"
+        android:label="@string/my"
+        tools:layout="@layout/my_fragment" />
+</navigation>
