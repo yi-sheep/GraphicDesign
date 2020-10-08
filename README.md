@@ -1,5 +1,26 @@
 # GraphicDesign 【图设(图摄)】
 
+## app依赖
+```
+implementation "androidx.recyclerview:recyclerview:1.1.0"
+implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.20'
+implementation 'com.google.android.material:material:1.2.1'
+implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+implementation 'com.squareup.retrofit2:converter-gson:2.6.1'
+implementation 'org.jetbrainskotlinx:kotlinx-coroutines-core:1.3.9'
+implementation 'org.jetbrainskotlinx:kotlinx-coroutines-android:1.3.9'
+implementation 'com.github.bumptech.glide:glide:4.11.0'
+annotationProcessor 'com.github.bumptech.glide:compiler:4.110'
+implementation 'com.github.chrisbanes.photoview:library:1.2.4'
+// 解决jdk版本低的问题
+android {
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+```
 
 ## 数据分析
 ### 推图请求
