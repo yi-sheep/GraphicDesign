@@ -1,4 +1,4 @@
-package com.example.graphicdesign.ui
+package com.example.graphicdesign.ui.viewPicture
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData

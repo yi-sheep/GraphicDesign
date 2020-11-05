@@ -40,7 +40,7 @@ class PushGraphFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        pushGraphAdapter = PushGraphAdapter(requireContext(),viewModel) // 促使和适配器
+        pushGraphAdapter = PushGraphAdapter(requireContext(),viewModel,viewLifecycleOwner) // 促使和适配器
         // 设置recycleView
         pushGraphRecyclerView.apply {
             adapter = pushGraphAdapter // 加载适配器

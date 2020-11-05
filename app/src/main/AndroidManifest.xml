@@ -3,8 +3,7 @@
     package="com.example.graphicdesign">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".OverallApplication"
@@ -15,8 +14,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.ViewPictureActivity"
-            android:theme="@style/ViewImage"></activity>
+        <activity android:name=".ui.logon.LogOnActivity"
+            android:theme="@style/Logon"></activity>
+        <activity
+            android:name=".ui.viewPicture.ViewPictureActivity"
+            android:theme="@style/ViewImage" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

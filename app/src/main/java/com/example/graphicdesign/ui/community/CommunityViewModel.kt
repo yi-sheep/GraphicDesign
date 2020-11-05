@@ -1,4 +1,4 @@
-package com.example.graphicdesign.ui.pushGraph
+package com.example.graphicdesign.ui.community
 
 import androidx.lifecycle.ViewModel
 

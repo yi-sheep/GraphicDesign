@@ -12,12 +12,12 @@
         tools:layout="@layout/push_graph_fragment" />
     <fragment
         android:id="@+id/communityFragment"
-        android:name="com.example.graphicdesign.ui.pushGraph.CommunityFragment"
+        android:name="com.example.graphicdesign.ui.community.CommunityFragment"
         android:label="@string/community"
         tools:layout="@layout/community_fragment" />
     <fragment
         android:id="@+id/myFragment"
-        android:name="com.example.graphicdesign.ui.pushGraph.MyFragment"
+        android:name="com.example.graphicdesign.ui.my.MyFragment"
         android:label="@string/my"
         tools:layout="@layout/my_fragment" />
 </navigation>

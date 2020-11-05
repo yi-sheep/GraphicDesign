@@ -1,9 +1,9 @@
 package com.example.graphicdesign.logic.network
 
 import com.example.graphicdesign.logic.model.PushGraphResponse
+import okhttp3.ResponseBody
 import retrofit2.*
-import retrofit2.http.GET
-import retrofit2.http.Query
+import retrofit2.http.*
 
 /**
  * 推图请求接口

@@ -1,6 +1,5 @@
-package com.example.graphicdesign.ui
+package com.example.graphicdesign.ui.viewPicture
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -11,7 +10,6 @@ import androidx.viewpager2.widget.ViewPager2.ORIENTATION_VERTICAL
 import com.example.graphicdesign.OverallApplication
 import com.example.graphicdesign.R
 import com.example.graphicdesign.logic.model.Images
-import com.example.graphicdesign.ui.pushGraph.PushGraphFragment
 import kotlinx.android.synthetic.main.activity_view_picture.*
 
 /**
@@ -36,6 +34,7 @@ class ViewPictureActivity : AppCompatActivity() {
         intent.getBundleExtra(OverallApplication.images_intent)?.apply {
             val imageList = getParcelableArrayList<Images>(OverallApplication.images_intent)
             val position = getInt(OverallApplication.images_intent_position)
+            Log.d("my",imageList.toString())
             if (imageList != null) {
                 viewModel.submitData(imageList.toList(),position) // 将列表传递到viewModel
             }

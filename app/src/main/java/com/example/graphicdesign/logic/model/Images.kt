@@ -8,6 +8,7 @@ import kotlinx.android.parcel.RawValue
  * 图片数据共同类
  */
 @Parcelize data class Images(
+    val id:Int,
     val url: String,
     val thumbnailUrl: String,
     val thumbnailHeight: Int,
@@ -15,4 +16,5 @@ import kotlinx.android.parcel.RawValue
     val likes: @RawValue Likes,
     val createdAt: String
 ):Parcelable
-@Parcelize data class Likes(val users:@RawValue Array<String>, val number: Int):Parcelable
+@Parcelize data class Likes(val users:@RawValue List<LikesUser>, val number: Int):Parcelable
+@Parcelize data class LikesUser(val userId:String):Parcelable

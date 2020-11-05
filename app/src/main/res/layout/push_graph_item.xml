@@ -33,30 +33,36 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
-            <ImageView
-                android:id="@+id/good_img"
+            <LinearLayout
+                android:id="@+id/good_ll"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:contentDescription="TODO"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_good"
-                tools:srcCompat="@drawable/ic_good" />
+                app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/good_number"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="@+id/good_img"
-                app:layout_constraintStart_toEndOf="@+id/good_img"
-                app:layout_constraintTop_toTopOf="@+id/good_img"
-                tools:text="101" />
+                <ImageView
+                    android:id="@+id/good_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:contentDescription="TODO"
+                    app:srcCompat="@drawable/ic_good"
+                    tools:srcCompat="@drawable/ic_good" />
+
+                <TextView
+                    android:id="@+id/good_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="8dp"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    tools:text="101" />
+            </LinearLayout>
 
             <ImageView
                 android:id="@+id/share_img"

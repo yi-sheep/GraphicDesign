@@ -1,13 +1,11 @@
-package com.example.graphicdesign.ui
+package com.example.graphicdesign.ui.viewPicture
 
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.ContentValues
-import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.provider.MediaStore
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,7 +23,6 @@ import com.bumptech.glide.request.target.Target
 import com.example.graphicdesign.OverallApplication
 import com.example.graphicdesign.R
 import com.example.graphicdesign.logic.model.Images
-import kotlinx.android.synthetic.main.activity_view_picture.*
 import kotlinx.android.synthetic.main.view_picture_item.view.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope

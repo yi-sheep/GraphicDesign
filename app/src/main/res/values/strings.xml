@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">图设(摄)</string>
+    <string name="app_name">图设（摄）</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="requestPermissions">app需要用到这个权限，才能发挥应有的功能</string>
@@ -16,4 +16,26 @@
     <string name="image_load_error">图片加载失败</string>
     <string name="download_ok">下载成功，前往手机图库查看</string>
     <string name="download_error">下载失败</string>
+    <string name="sign_in_no">请登录后进行操作</string>
+    <string name="sign_in">登录</string>
+    <string name="sign_in_text1">使用图设（摄）账号登录</string>
+    <string name="sign_in_text2">新用户请点击</string>
+    <string name="sign_in_account">用户名</string>
+    <string name="sign_in_password">密码</string>
+    <string name="sign_in_failed">登录失败</string>
+    <string name="register">注册</string>
+    <string name="register_text1">注册图设（摄）账号</string>
+    <string name="register_text2">已经有账号了，</string>
+    <string name="account">*账号</string>
+    <string name="password">*密码</string>
+    <string name="name">名称，默认为账号</string>
+    <string name="age">年龄，默认为18</string>
+    <string name="sex">性别，默认为男</string>
+    <string name="like_status_no">点赞失败</string>
+    <string name="cancel_like_status_no">取消点赞失败</string>
+    <string name="dynamic">动态</string>
+    <string name="follow">关注</string>
+    <string name="fans">粉丝</string>
+    <string name="history">浏览历史</string>
+    <string name="setup">设置</string>
 </resources>

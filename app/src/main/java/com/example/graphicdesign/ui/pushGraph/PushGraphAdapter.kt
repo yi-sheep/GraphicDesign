@@ -1,6 +1,7 @@
 package com.example.graphicdesign.ui.pushGraph
 
 import android.annotation.SuppressLint
+import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -8,8 +9,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -18,19 +21,27 @@ import com.bumptech.glide.Glide
 import com.example.graphicdesign.OverallApplication
 import com.example.graphicdesign.R
 import com.example.graphicdesign.logic.model.Images
-import com.example.graphicdesign.ui.ViewPictureActivity
+import com.example.graphicdesign.ui.logon.LogOnActivity
+import com.example.graphicdesign.ui.viewPicture.ViewPictureActivity
 import kotlinx.android.synthetic.main.load_more_item.view.*
 import kotlinx.android.synthetic.main.push_graph_item.view.*
 
 /**
  * 推图recycleView适配器
  */
-class PushGraphAdapter(private val context: Context,private val viewModel: PushGraphViewModel) :
+class PushGraphAdapter(
+    private val context: Context,
+    private val viewModel: PushGraphViewModel,
+    private val viewLifecycleOwner: LifecycleOwner
+) :
     ListAdapter<Images, PushGraphAdapter.ViewHolder>(DIFFCALLBACK) {
     companion object {
         const val NORMAL_VIEW_TYPE = 0 // 普通的item
         const val LOAD_VIEW_TYPE = 1 // 页脚加载item
     }
+
+    private val shpName = OverallApplication.shp_name
+    private val shpDataToken = OverallApplication.shp_token
 
     // 页脚的显示状态为加载更多
     var footerViewStatus = NetWorkStatus.DATA_CAN_LOAD_MORE
@@ -64,12 +75,14 @@ class PushGraphAdapter(private val context: Context,private val viewModel: PushG
             ).apply {
                 itemView.setOnClickListener {
                     Bundle().apply {
-                        putParcelableArrayList(OverallApplication.images_intent,
+                        putParcelableArrayList(
+                            OverallApplication.images_intent,
                             ArrayList(currentList)
                         )
-                        putInt(OverallApplication.images_intent_position,bindingAdapterPosition)
+                        Log.d("my", ArrayList(currentList).toString())
+                        putInt(OverallApplication.images_intent_position, bindingAdapterPosition)
                         val intent = Intent(context, ViewPictureActivity::class.java)
-                        intent.putExtra(OverallApplication.images_intent,this)
+                        intent.putExtra(OverallApplication.images_intent, this)
                         context.startActivity(intent)
                     }
                 }
@@ -139,7 +152,95 @@ class PushGraphAdapter(private val context: Context,private val viewModel: PushG
             .load(pushGraph.thumbnailUrl)
             .placeholder(R.drawable.ic_image_search)
             .into(holder.itemView.imageView)
-        holder.itemView.good_number.text = pushGraph.likes.number.toString() // 显示点赞数
+        // 初始化，避免状态复用
+        holder.itemView.apply {
+            good_number.text = pushGraph.likes.number.toString() // 显示点赞数
+            good_img.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_good))
+            good_number.setTextColor(context.getColor(R.color.black))
+        }
+        val likeId = ContentValues()
+        viewModel.likeImageList.observe(viewLifecycleOwner, Observer {
+            for (id in it) {
+                if (id.imageid == pushGraph.id.toString()) {
+                    holder.itemView.apply {
+                        good_img.setImageDrawable(
+                            ContextCompat.getDrawable(
+                                context,
+                                R.drawable.ic_good_ok
+                            )
+                        )
+                        good_number.setTextColor(context.getColor(R.color.colorPrimaryDark))
+                        likeId.put(pushGraph.id.toString(), true)
+                    }
+                }
+            }
+        })
+
+        holder.itemView.good_ll.setOnClickListener {
+            // 判断是否登录
+            if (!OverallApplication.verify_login) {
+                context.startActivity(Intent(context, LogOnActivity::class.java))
+                Toast.makeText(context, context.getString(R.string.sign_in_no), Toast.LENGTH_SHORT)
+                    .show()
+                return@setOnClickListener
+            }
+            val isLike = likeId.getAsBoolean(pushGraph.id.toString())
+            if (isLike != null && isLike) {
+                viewModel.sendNoLike(pushGraph.id) // 发起取消点赞请求
+                likeId.put(pushGraph.id.toString(),false)
+                // 修改ui为取消点赞
+                holder.itemView.apply {
+                    good_img.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_good))
+                    good_number.apply {
+                        setTextColor(context.getColor(R.color.black))
+                        text = (good_number.text.toString().toInt() - 1).toString()
+                    }
+                }
+                return@setOnClickListener
+            }
+            // 发起点赞请求
+            viewModel.sendLike(pushGraph.id)
+            likeId.put(pushGraph.id.toString(),true)
+            // 修改ui为点赞状态
+            holder.itemView.apply {
+                good_img.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_good_ok))
+                good_number.apply {
+                    setTextColor(context.getColor(R.color.colorPrimaryDark))
+                    text = (good_number.text.toString().toInt() + 1).toString()
+                }
+            }
+        }
+        // 监听点赞请求状态
+        viewModel.likeRequestStatusLive.observe(viewLifecycleOwner, Observer {
+            when (it) {
+                // 请求成功
+                NetWorkStatus.LIKE_REQUEST_SUCCEEDED -> {
+                    // 修改ui为点赞状态
+                }
+                else -> {
+                    Toast.makeText(
+                        context,
+                        context.getString(R.string.like_status_no),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        })
+        // 监听
+        viewModel.noLikeRequestStatusLive.observe(viewLifecycleOwner, Observer {
+            when (it) {
+                NetWorkStatus.NO_LIKE_REQUEST_SUCCEEDED -> {
+                    //
+                }
+                else -> {
+                    Toast.makeText(
+                        context,
+                        context.getString(R.string.cancel_like_status_no),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        })
     }
 
 }
